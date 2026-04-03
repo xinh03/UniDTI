@@ -54,7 +54,7 @@ _C.PROTEIN.GNN.ENABLE = True
 _C.PROTEIN.GNN.HIDDEN_DIM = 128
 _C.PROTEIN.GNN.NUM_LAYERS = 3
 _C.PROTEIN.GNN.DROPOUT = 0.3
-_C.PROTEIN.GNN.GCN_TYPE = 'dgl'  # 'dgl' or 'pyg'
+_C.PROTEIN.GNN.GCN_TYPE = 'dgl'
 
 # CrossIntention feature fusion
 _C.CROSSINTENTION = CN()
@@ -80,11 +80,11 @@ _C.SOLVER.USE_LD = True
 _C.SOLVER.LR_DECAY = 0.5
 _C.SOLVER.DECAY_INTERVAL = 25
 _C.SOLVER.WEIGHT_DECAY = 1e-5
-_C.SOLVER.SEED = 555
+_C.SOLVER.SEED = 42
 
 # RESULT
 _C.RESULT = CN()
-_C.RESULT.OUTPUT_DIR = r"/home/shaoxin/uni-dta/BINDTI/BINDTI/output/result/labeled/biosnap/60/seed555"
+_C.RESULT.OUTPUT_DIR = r"../output/result/glass/warm/seed42"
 _C.RESULT.SAVE_MODEL = True
 
 def get_cfg_defaults():
