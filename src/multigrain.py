@@ -1,4 +1,8 @@
-# multigrain.py - 多粒度分子特征提取模块
+# multigrain.py
+# Author  : Ethan Huang
+# File    : multigrain.py
+# Time    : 2026/3/25
+
 import numpy as np
 import torch
 import torch.nn as nn
@@ -10,50 +14,50 @@ import networkx as nx
 warnings.filterwarnings("ignore")
 
 class MultigrainMolecularFeatures:
-    """多粒度分子特征提取器"""
+    """Multi-granularity molecular feature extractor."""
     
-    # 原子类型定义
+    # Atom types
     ATOM_TYPES = ['H', 'C', 'N', 'O', 'F', 'P', 'S', 'Cl', 'Br', 'I', 'OTHER']
     ATOM_TYPE_TO_IDX = {t: i for i, t in enumerate(ATOM_TYPES)}
     
-    # 粗粒度节点类型
+    # Coarse node types
     COARSE_NODE_TYPES = ['RING', 'FUNCTIONAL_GROUP', 'NON_CORE']
     COARSE_NODE_TO_IDX = {t: i for i, t in enumerate(COARSE_NODE_TYPES)}
     
     @staticmethod
     def get_atom_features(atom):
-        """提取原子特征（34维）"""
+        """Extract 34-dim atom features."""
         try:
             atom_types = ['H', 'C', 'N', 'O', 'F', 'P', 'S', 'Cl', 'Br', 'I']
             atom_symbol = atom.GetSymbol()
             atom_type_onehot = [int(atom_symbol == t) for t in atom_types]
             if sum(atom_type_onehot) == 0:
-                atom_type_onehot.append(1)  # 其他原子类型
+                atom_type_onehot.append(1)  # other atom type
             else:
                 atom_type_onehot.append(0)
             
             features = atom_type_onehot
             
-            # 原子度
+            # Atom degree (capped at 5)
             degree = [0] * 6
             degree[min(atom.GetDegree(), 5)] = 1
             features.extend(degree)
             
-            features.append(atom.GetFormalCharge())  # 形式电荷
+            features.append(atom.GetFormalCharge())
             
-            # 手性
+            # Chirality
             chiral = [0] * 4
             chiral_tag = atom.GetChiralTag()
             chiral_idx = min(int(chiral_tag), 3)
             chiral[chiral_idx] = 1
             features.extend(chiral)
             
-            # 氢原子数
+            # Number of hydrogens (capped at 4)
             num_h = [0] * 5
             num_h[min(atom.GetTotalNumHs(), 4)] = 1
             features.extend(num_h)
             
-            # 杂化类型
+            # Hybridization
             hybridization_types = [
                 Chem.rdchem.HybridizationType.SP,
                 Chem.rdchem.HybridizationType.SP2, 
@@ -64,8 +68,8 @@ class MultigrainMolecularFeatures:
             hybridization = [int(atom.GetHybridization() == h) for h in hybridization_types]
             features.extend(hybridization)
             
-            features.append(int(atom.GetIsAromatic()))  # 是否芳香族
-            features.append(atom.GetMass() / 100.0)     # 原子质量(归一化)
+            features.append(int(atom.GetIsAromatic()))
+            features.append(atom.GetMass() / 100.0)   # normalized atomic mass
             
             return np.array(features, dtype=np.float32)
         except:
@@ -73,20 +77,20 @@ class MultigrainMolecularFeatures:
     
     @staticmethod
     def get_coarse_node_features(mol, atom_indices, node_type):
-        """提取粗粒度节点特征"""
+        """Extract features for a coarse node."""
         try:
             features = []
             
-            # 节点类型one-hot
+            # Node type one-hot
             type_onehot = [0] * len(MultigrainMolecularFeatures.COARSE_NODE_TO_IDX)
             if node_type in MultigrainMolecularFeatures.COARSE_NODE_TO_IDX:
                 type_onehot[MultigrainMolecularFeatures.COARSE_NODE_TO_IDX[node_type]] = 1
             else:
-                type_onehot[0] = 1  # 默认为RING类型
+                type_onehot[0] = 1  # default to RING
             
             features.extend(type_onehot)
             
-            # 原子组成统计（10种原子类型）
+            # Atom composition counts (10 atom types)
             atom_counts = []
             for atom_type in ['C', 'N', 'O', 'F', 'P', 'S', 'Cl', 'Br', 'I', 'OTHER']:
                 count = 0
@@ -100,10 +104,10 @@ class MultigrainMolecularFeatures:
                 atom_counts.append(count)
             features.extend(atom_counts)
             
-            # 节点大小
+            # Node size
             features.append(len(atom_indices))
             
-            # 是否包含芳香原子
+            # Contains aromatic atom?
             aromatic = 0
             for atom_idx in atom_indices:
                 if atom_idx < mol.GetNumAtoms():
@@ -115,12 +119,12 @@ class MultigrainMolecularFeatures:
             return np.array(features, dtype=np.float32)
         except:
             default_features = np.zeros(len(MultigrainMolecularFeatures.COARSE_NODE_TO_IDX) + 10 + 2, dtype=np.float32)
-            default_features[0] = 1.0  # 默认为RING类型
+            default_features[0] = 1.0  # default to RING
             return default_features
     
     @staticmethod
     def get_ring_systems(mol, include_spiro=False):
-        """提取环系统"""
+        """Extract ring systems as sets of atom indices."""
         try:
             ri = mol.GetRingInfo()
             systems = []
@@ -141,7 +145,7 @@ class MultigrainMolecularFeatures:
     
     @staticmethod
     def get_ertl_functional_groups(mol):
-        """提取Ertl官能团"""
+        """Extract Ertl functional groups as connected components."""
         try:
             marked_atoms = set()
             
@@ -152,13 +156,13 @@ class MultigrainMolecularFeatures:
                 if idx in marked_atoms:
                     continue
 
-                # 处理芳香性杂原子（排除芳香碳）
+                # Aromatic heteroatoms (excluding aromatic carbon)
                 if atom.GetIsAromatic():
                     if atomic_num != 6:
                         marked_atoms.add(idx)
                     continue
 
-                # 处理碳原子
+                # Carbon atoms
                 if atomic_num == 6:
                     is_marked = False
                     neighbors = atom.GetNeighbors()
@@ -170,18 +174,18 @@ class MultigrainMolecularFeatures:
                         bond_order = bond.GetBondType()
                         n_atomic_num = neighbor.GetAtomicNum()
                         
-                        # C=X, C#X 不饱和键
+                        # C=X or C#X (unsaturated bonds)
                         if (n_atomic_num != 1 and 
                             (bond_order == Chem.BondType.DOUBLE or bond_order == Chem.BondType.TRIPLE) and
                             not bond.GetIsAromatic()):
                             marked_atoms.add(n_idx)
                             is_marked = True
                         
-                        # 单键杂原子计数
+                        # Single-bonded heteroatoms
                         elif n_atomic_num in [7, 8, 16] and bond_order == Chem.BondType.SINGLE:
                             if not neighbor.GetIsAromatic():
                                 marked_atoms.add(n_idx)
-                                # 检查杂原子是否只连单键
+                                # Check if heteroatom has only single bonds
                                 is_all_single = True
                                 for n_neighbor in neighbor.GetNeighbors():
                                     if mol.GetBondBetweenAtoms(n_idx, n_neighbor.GetIdx()).GetBondType() != Chem.BondType.SINGLE:
@@ -192,7 +196,7 @@ class MultigrainMolecularFeatures:
                     if single_bond_hetero_count > 1:
                         is_marked = True
                         
-                    if atom.IsInRingSize(3):  # 小环
+                    if atom.IsInRingSize(3):  # small rings
                         for neighbor in neighbors:
                             if neighbor.GetAtomicNum() not in [1, 6] and neighbor.IsInRingSize(3):
                                 is_marked = True
@@ -201,11 +205,11 @@ class MultigrainMolecularFeatures:
                     if is_marked:
                         marked_atoms.add(idx)
 
-                # 其他杂原子
+                # Other heteroatoms
                 elif atomic_num != 1:
                     marked_atoms.add(idx)
 
-            # 提取连通分量
+            # Extract connected components
             if not marked_atoms:
                 return []
             
@@ -224,24 +228,23 @@ class MultigrainMolecularFeatures:
     
     @staticmethod
     def get_non_core_structures(mol, ring_indices_list, fg_indices_list):
-        """提取Non-Core结构"""
+        """Extract non-core structures (atoms not in rings or functional groups)."""
         try:
             all_atoms = set(range(mol.GetNumAtoms()))
             
-            # 收集所有被占用的原子
+            # Collect occupied atoms
             occupied_atoms = set()
             for r in ring_indices_list:
                 occupied_atoms.update(r)
             for fg in fg_indices_list:
                 occupied_atoms.update(fg)
             
-            # 计算差集
             non_core_atoms = all_atoms - occupied_atoms
             
             if not non_core_atoms:
                 return []
 
-            # 将离散的原子聚类成连通结构
+            # Cluster into connected components
             G = nx.Graph()
             for idx in non_core_atoms:
                 G.add_node(idx)
@@ -257,22 +260,22 @@ class MultigrainMolecularFeatures:
     
     @staticmethod
     def extract_multiscale_graph_features(smiles, max_atoms=150, max_coarse_nodes=50):
-        """提取多尺度图特征（细粒度和粗粒度）"""
+        """Extract fine-grained and coarse-grained graph features from a SMILES string."""
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
             return None
         
-        # 1. 细粒度图特征（原子级）
+        # Fine-grained graph (atom level)
         num_atoms = min(mol.GetNumAtoms(), max_atoms)
         
-        # 原子特征
+        # Atom features
         fine_x = []
         for i in range(num_atoms):
             atom = mol.GetAtomWithIdx(i)
             features = MultigrainMolecularFeatures.get_atom_features(atom)
             fine_x.append(features)
         
-        # 填充或截断
+        # Pad or truncate
         if len(fine_x) < max_atoms:
             pad_len = max_atoms - len(fine_x)
             fine_x.extend([np.zeros(34, dtype=np.float32)] * pad_len)
@@ -280,7 +283,7 @@ class MultigrainMolecularFeatures:
             fine_x = fine_x[:max_atoms]
         fine_x = np.array(fine_x, dtype=np.float32)
         
-        # 细粒度图边特征
+        # Fine-grained edges
         fine_edges = []
         fine_edge_attrs = []
         for bond in mol.GetBonds():
@@ -315,12 +318,12 @@ class MultigrainMolecularFeatures:
             fine_edge_index = np.zeros((2, 0), dtype=np.int64)
             fine_edge_attr = np.zeros((0, 1), dtype=np.float32)
         
-        # 2. 粗粒度结构提取
+        # Coarse structure extraction
         ring_indices = MultigrainMolecularFeatures.get_ring_systems(mol)
         fg_indices = MultigrainMolecularFeatures.get_ertl_functional_groups(mol)
         non_core_indices = MultigrainMolecularFeatures.get_non_core_structures(mol, ring_indices, fg_indices)
         
-        # 收集所有粗粒度节点
+        # Collect all coarse nodes
         coarse_atom_indices = []
         coarse_node_types = []
         
@@ -339,19 +342,19 @@ class MultigrainMolecularFeatures:
                 coarse_atom_indices.append(list(nc))
                 coarse_node_types.append('NON_CORE')
         
-        # 限制最大粗粒度节点数
+        # Limit number of coarse nodes
         if len(coarse_atom_indices) > max_coarse_nodes:
             coarse_atom_indices = coarse_atom_indices[:max_coarse_nodes]
             coarse_node_types = coarse_node_types[:max_coarse_nodes]
         
-        # 3. 原子到粗粒度节点映射
+        # Atom to coarse node mapping
         atom_to_coarse = np.full(max_atoms, -1, dtype=np.int64)
         for coarse_idx, atom_indices in enumerate(coarse_atom_indices):
             for atom_idx in atom_indices:
                 if atom_idx < max_atoms:
                     atom_to_coarse[atom_idx] = coarse_idx
         
-        # 4. 构建粗粒度图边
+        # Coarse graph edges
         coarse_edges = []
         coarse_edge_attrs = []
         
@@ -397,20 +400,20 @@ class MultigrainMolecularFeatures:
             coarse_edge_index = np.zeros((2, 0), dtype=np.int64)
             coarse_edge_attr = np.zeros((0, 1), dtype=np.float32)
         
-        # 5. 粗粒度节点特征
+        # Coarse node features
         coarse_node_features = []
         for atom_indices, node_type in zip(coarse_atom_indices, coarse_node_types):
             features = MultigrainMolecularFeatures.get_coarse_node_features(mol, atom_indices, node_type)
             coarse_node_features.append(features)
         
-        # 填充粗粒度节点特征
+        # Pad coarse node features
         if len(coarse_node_features) < max_coarse_nodes:
             pad_len = max_coarse_nodes - len(coarse_node_features)
             pad_features = np.zeros((pad_len, len(MultigrainMolecularFeatures.COARSE_NODE_TO_IDX) + 10 + 2), dtype=np.float32)
             coarse_node_features.extend(pad_features)
         coarse_node_features = np.array(coarse_node_features, dtype=np.float32)
         
-        # 6. 分子指纹和描述符
+        # Molecular fingerprint and descriptors
         try:
             ecfp = AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits=1024)
             ecfp_array = np.array(ecfp, dtype=np.float32)
@@ -431,7 +434,7 @@ class MultigrainMolecularFeatures:
         except:
             descriptors = np.zeros(8, dtype=np.float32)
         
-        # 填充描述符到200维
+        # Pad descriptors to 200 dimensions
         if len(descriptors) < 200:
             descriptors = np.pad(descriptors, (0, 200 - len(descriptors)), 'constant')
         
