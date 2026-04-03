@@ -4,14 +4,13 @@
 # Time    : 2026/3/25
 
 """
-#env:
 #seed 42
 python prediction.py \
-    --test_data /home/chuym/mor/dl/Uni-DTA_5.2_prot_gnn/data/glass-100-700da/warm/test.csv \
-    --checkpoint /home/chuym/mor/dl/BINDTI-UNIDTI/BINDTI/BINDTI/output/result/multimodal-multigrain2/glass-100-700da/seed42/best_model_epoch_45.pth \
-    --result_metrics /home/chuym/mor/dl/BINDTI-UNIDTI/BINDTI/BINDTI/output/result/multimodal-multigrain2/glass-100-700da/seed42/result_metrics.pt \
-    --output /home/chuym/mor/dl/BINDTI-UNIDTI/BINDTI/BINDTI/output/test/UNIDTI/GLASS/seed42/predictions.csv \
-    --contact_map_dir /home/shaoxin/uni-dta/BINDTI/BINDTI/prot-gnn-data/glass-100-700da/contact_maps_p2rank \
+    --test_data ../data/glass/warm/test.csv \
+    --checkpoint ../output/glass/warm/best_model_epoch_45.pth \
+    --result_metrics ../result/glass/warm/result_metrics.pt \
+    --output ../output/prediction/GLASS/warm/predictions.csv \
+    --contact_map_dir ../prot-gnn-data/glass/contact_maps_p2rank \
     --batch_size 64 \
     --device cuda:0
 """
