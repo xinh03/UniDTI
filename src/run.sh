@@ -11,7 +11,7 @@ export PYTHONPATH=.:$PYTHONPATH
 # Parameters
 DATA_NAME="biosnap" # DAVIS #bindingdb #biosnap #glass
 SPLIT="warm" # warm
-CONTACT_MAP_DIR="/home/shaoxin/uni-dta/BINDTI/BINDTI/prot-gnn-data/biosnap/contact_maps_p2rank"
+CONTACT_MAP_DIR="../prot-gnn-data/glass/contact_maps_p2rank"
 
 echo "Starting multimodal UniDTI training..."
 echo "Dataset: $DATA_NAME"
