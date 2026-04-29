@@ -5,11 +5,11 @@ A Multi-modal and Multi-scale Unified Deep Learning Framework for Drug-Target In
   <img src="Figure/Fig1.png" width="800">
 </p>
 
-### Training
+# Training
 
-### Inference
+# Inference
 
-### 📁 Repository Structure
+# 📁 Repository Structure
 ```
 UniDTI/
 ├── Figure/ # Figures and visualizations used in the UniDTI
