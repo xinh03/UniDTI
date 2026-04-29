@@ -6,13 +6,15 @@ A Multi-modal and Multi-scale Unified Deep Learning Framework for Drug-Target In
 </p>
 
 ## 📁 Repository Structure
+```
 UniDTI/
 ├── Figure/ # Figures and visualizations used in the UniDTI
 ├── datasets/ # Raw and preprocessed datasets
 ├── models/ # Saved model checkpoints
-├── notebook/ # Jupyter notebooks for coarse grained feature extraction
+├── notebook/ # Jupyter notebooks for coarse-grained feature extraction
 ├── output/ # Output files
 ├── prot-gnn-data/ # Protein graph data for GNN-based modeling
-├── src/ # Source code for feature extraction & training
+├── src/ # Source code for feature extraction, training and predicting 
 ├── README.md # Project documentation
 └── unidti.yaml # Conda environment configuration
+```
