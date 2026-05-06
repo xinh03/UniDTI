@@ -41,11 +41,11 @@ Clone this Github repo and set up a new conda environment. It normally takes abo
    conda activate unidti
    ```
 ## 🧮 Data Preparation
-### 🔹 Use the processed Prot-GNN data
+### 🔹 A) Use the processed Prot-GNN data
   ```bash
   cd prot-gnn-data/contact_maps_p2rank
   ```
-### 🔹 Preparation for Prot-GNN
+### 🔹 B) Preparation for Prot-GNN
   ```bash
   cd prot-gnn-data/
   ```
