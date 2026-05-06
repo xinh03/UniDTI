@@ -52,8 +52,8 @@ Clone this Github repo and set up a new conda environment. It normally takes abo
   cd prot-gnn-data/
   ```
 #### 1. Fetch Protein Structures
+P2Rank Usage
   ```bash
-  P2Rank Usage
   prank predict -f test_data/1fbl.pdb         # predict pockets on single pdb file
   ```
 For batch processing, please refer to the official [p2rank](https://github.com/rdk/p2rank)
