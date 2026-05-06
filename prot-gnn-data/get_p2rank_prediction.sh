@@ -1,4 +1,4 @@
-# 3. get_p2rank_prediction.sh
+# get_p2rank_prediction.sh
 # Author  : Ethan Huang
 # File    : get_p2rank_prediction.sh
 # Time    : 2026/3/25
