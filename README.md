@@ -1,17 +1,47 @@
-# UniDTI
-A Multi-modal and Multi-scale Unified Deep Learning Framework for Drug-Target Interaction Prediction
+# UniDTI：A Multi-modal and Multi-scale Unified Deep Learning Framework for Drug-Target Interaction Prediction
 
+<p align="center">
+<a href="YOUR_SLACK_OR_COMMUNITY_LINK">
+<img src="https://img.shields.io/badge/Join-Community-4A154B?style=for-the-badge&logo=slack" alt="Join Community" />
+</a>
+
+<a href="YOUR_WEB_UI_LINK">
+<img src="https://img.shields.io/badge/Try-Web%20UI-blue?style=for-the-badge" alt="Web UI" />
+</a>
+
+<a href="YOUR_X_TWITTER_LINK">
+<img src="https://img.shields.io/badge/Follow-on%20X-black?style=for-the-badge&logo=x" alt="Follow on X" />
+</a>
+
+<a href="YOUR_LINKEDIN_LINK">
+<img src="https://img.shields.io/badge/Follow-LinkedIn-0077B5?style=for-the-badge&logo=linkedin" alt="Follow on LinkedIn" />
+</a>
+
+<a href="YOUR_PAPER_LINK">
+<img src="https://img.shields.io/badge/Read-Paper-green?style=for-the-badge" alt="Paper" />
+</a>
+
+<a href="LICENSE">
+<img src="https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge" alt="MIT License" />
+</a>
+</p>
 ## 🏗️ Framework
 <p align="center">
   <img src="Figure/Fig1.png" width="800">
 </p>
 
 ## 🛠️ Installation
-1. Create the Conda environment:
+Clone this Github repo and set up a new conda environment. It normally takes about 10 minutes to install on a normal desktop computer.
+1. Clone the source code of UniDTI
+   ```bash
+   git clone https://github.com/xinh03/UniDTI.git
+   cd UniDTI
+   ```
+2. Create the Conda environment:
    ```bash
    conda env create -f environment.yaml
    ```
-2. Activate the environment:
+3. Activate the environment:
    ```bash
    conda activate unidti
    ```
@@ -33,13 +63,13 @@ A Multi-modal and Multi-scale Unified Deep Learning Framework for Drug-Target In
 2. Set the output file path
   ```bash
   vim configs.py
+  # Set your output file path
   _C.RESULT.OUTPUT_DIR = "/path/to/your/output"
   ```
-4. Start training
+3. Start training
   ```bash
   bash run.sh
   ```
-
 
 ## ⚡ Inference
 1. set your input file path
@@ -47,8 +77,8 @@ A Multi-modal and Multi-scale Unified Deep Learning Framework for Drug-Target In
   cd src/
   vim prediction.py
   ```
-  ```python
-  python test2.2.py \
+  ```bash
+  python prediction.py \
       --test_data /path/to/your/test_data.csv \
       --checkpoint /path/to/your/best_model.pth \
       --result_metrics /path/to/your/result_metrics.pt \
@@ -70,16 +100,16 @@ UniDTI/
 ├── README.md # Project documentation
 └── environment.yaml # Conda environment configuration of UniDTI
 ```
-Note: Our code is mainly referenced from [EFGs](https://github.com/rdkit/rdkit/tree/master/Contrib/efgs) and [BINDTI](https://github.com/plhhnu/BINDTI).
+Note: Our code is mainly referenced from [EFGs](https://github.com/rdkit/rdkit/tree/master/Contrib/efgs), [M<sup>2</sup>N] and [BINDTI](https://github.com/plhhnu/BINDTI).
 We gratefully acknowledge the authors for making their code publicly available.  
 
-
 ## 📁 Results
-UniDTI consistently outperforms baseline methods across multiple benchmark datasets (BindingDB, BioSNAP, DRH, Davis and Glass(GPCR-Based)).
-Detailed experimental results and ablation studies are reported in the manuscript.
+- UniDTI achieves state-of-the-art (SOTA) performance across multiple benchmark datasets, including BindingDB, BIOSNAP, DRH, Davis, and GLASS (GPCR-based).
+- Comprehensive experimental evaluations and ablation studies are presented in the manuscript.
 
 ## 🧾 Reference
-Ertl, P. An algorithm to identify functional groups in organic molecules. J Cheminform 9, 36 (2017)
-Gonzalo C. EFGs:AComplete andAccurate Implementation ofErtl’sFunctional Group Detection Algorithm inRDKit. J.Chem. Inf.Model. 65, 1061−1066 (2025)
-Lihong P. BINDTI: A Bi-Directional Intention Network for Drug-Target Interaction Identification Based on Attention Mechanisms. IEEE JOURNAL OF BIOMEDICAL AND HEALTH INFORMATICS, VOL. 29, NO. 3, MARCH 2025
+· Ertl, P. An algorithm to identify functional groups in organic molecules. J Cheminform 9, 36 (2017)
+· Gonzalo C. EFGs:A Complete and Accurate Implementation of Ertl’s Functional Group Detection Algorithm in RDKit. J.Chem. Inf.Model. 65, 1061−1066 (2025)
+· Lihong P. BINDTI: A Bi-Directional Intention Network for Drug-Target Interaction Identification Based on Attention Mechanisms. IEEE JOURNAL OF BIOMEDICAL AND HEALTH INFORMATICS, VOL. 29, NO. 3, MARCH 2025
+
 
