@@ -87,7 +87,7 @@ For batch processing, please refer to the official [p2rank](https://github.com/r
   ```
   ```bash
   # Parameter Settings (please modify according to your local setup)
-  DATA_NAME="GLASS"  # options: DAVIS / BindingDB / BIOSNAP / GLASS
+  DATA_NAME="glass"  # options: DAVIS / bindingdb / biosnap / glass / etc.
   SPLIT="warm"  # options: warm / cold_drug / cold_prot / etc.
   
   # Please set the path to your local contact map directory
