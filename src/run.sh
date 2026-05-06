@@ -5,12 +5,12 @@
 # Time    : 2026/3/25
 
 export CUDA_LAUNCH_BLOCKING=1
-export CUDA_VISIBLE_DEVICES=2
+export CUDA_VISIBLE_DEVICES=0
 export PYTHONPATH=.:$PYTHONPATH
 
 # Parameters
-DATA_NAME="biosnap" # DAVIS #bindingdb #biosnap #glass
-SPLIT="warm" # warm
+DATA_NAME="glass" # options: DAVIS / bindingdb / biosnap / glass / etc.
+SPLIT="warm" # options: warm / cold_drug / cold_prot / etc.
 CONTACT_MAP_DIR="../prot-gnn-data/glass/contact_maps_p2rank"
 
 echo "Starting multimodal UniDTI training..."
