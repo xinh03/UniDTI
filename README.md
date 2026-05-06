@@ -30,7 +30,7 @@ Clone this Github repo and set up a new conda environment. It normally takes abo
 1. Clone the source code of UniDTI
    ```bash
    git clone https://github.com/xinh03/UniDTI.git
-   cd UniDTI
+   cd UniDTI/
    ```
 2. Create the Conda environment:
    ```bash
@@ -41,15 +41,44 @@ Clone this Github repo and set up a new conda environment. It normally takes abo
    conda activate unidti
    ```
 ## 🧮 Data Preparation
-Preparation of Prot-GNN
+### 🔹 Use the processed Prot-GNN data
+  ```bash
+  cd prot-gnn-data/contact_maps_p2rank
+  ```
+### 🔹 Preparation for Prot-GNN
+  ```bash
+  cd prot-gnn-data/
+  ```
+#### 1. Fetch Protein Structures
   ```bash
   P2Rank Usage
   prank predict -f test_data/1fbl.pdb         # predict pockets on single pdb file
   ```
-For bulk acquisition, please refer to the [p2rank](https://github.com/rdk/p2rank)
+For batch processing, please refer to the official [p2rank](https://github.com/rdk/p2rank)
+#### 2. Generate PDB List
+  ```bash
+  python make_pdb_list.py \
+    -i /path/to/pdbs \
+    -o /path/to/pdb_list.txt
+  ```
+#### 3. Protein list pocket prediction
+  ```bash
+  cd /path/to/p2rank/p2rank_2.5.1 # Please change to your own p2rank directory
+  ./prank predict /path/to/your/data/pdb_list.txt -o /path/to/your/data/pdbs-p2rank-results -threads 20 -c alphafold
+  ```
+#### 4. generate protein contact_map
+  ```bash
+  env: conda activate unidti
+  
+  python generate_prot_contact_map.py \
+    --pdb_dir /path/to/your/pdbs \
+    --p2rank_dir /path/to/your/p2rank_results \
+    --output_dir /path/to/your/output_contact_maps \
+    --top_k 3 # Optional, default to 3, means keep the first K pockets
+  ```
 
 ## 🏋️ Training
-1. Select task settings
+#### 1. Select task settings
   ```bash
   cd src/
   vim run.sh
@@ -62,19 +91,19 @@ For bulk acquisition, please refer to the [p2rank](https://github.com/rdk/p2rank
   # Please set the path to your local contact map directory
   CONTACT_MAP_DIR="/path/to/your/contact_maps_p2rank"
   ```
-2. Set the output file path
+#### 2. Set the output file path
   ```bash
   vim configs.py
   # Set your output file path
   _C.RESULT.OUTPUT_DIR = "/path/to/your/output"
   ```
-3. Start training
+#### 3. Start training
   ```bash
   bash run.sh
   ```
 
 ## ⚡ Inference
-1. set your input file path
+#### 1. set your input file path
   ```bash
   cd src/
   vim prediction.py
