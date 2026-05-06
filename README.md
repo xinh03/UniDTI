@@ -46,6 +46,7 @@ Clone this Github repo and set up a new conda environment. It normally takes abo
 ### 🔹 A) Use the processed Prot-GNN data
   ```bash
   cd prot-gnn-data/contact_maps_p2rank
+  unzip contact_maps_p2rank.zip
   ```
 ### 🔹 B) Preparation for Prot-GNN
   ```bash
