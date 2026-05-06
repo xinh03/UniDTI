@@ -1,4 +1,6 @@
-# UniDTI: A Multi-modal and Multi-scale Unified Framework for Predicting Drug-Target Interactions
+<h1 align="center">
+  UniDTI: A Multi-modal and Multi-scale Unified Framework for Predicting Drug-Target Interactions
+</h1>
 
 <p align="center">
 <a href="YOUR_SLACK_OR_COMMUNITY_LINK">
@@ -22,7 +24,7 @@
 
 ## 🏛️ Framework
 <p align="center">
-  <img src="Figure/Fig1.png" width="700">
+  <img src="Figure/Fig1.png" width="750">
 </p>
 
 ## 🛠️ Installation
@@ -131,7 +133,7 @@ UniDTI/
 ├── README.md # Project documentation
 └── environment.yaml # Conda environment configuration of UniDTI
 ```
-Note: Our code is mainly referenced from [EFGs](https://github.com/rdkit/rdkit/tree/master/Contrib/efgs), [M<sup>2</sup>N] and [BINDTI](https://github.com/plhhnu/BINDTI).
+Note: Our code is mainly referenced from [EFGs](https://github.com/rdkit/rdkit/tree/master/Contrib/efgs), M<sup>2</sup>N and [BINDTI](https://github.com/plhhnu/BINDTI).
 We gratefully acknowledge the authors for making their code publicly available.  
 
 ## 📁 Results
@@ -141,6 +143,7 @@ We gratefully acknowledge the authors for making their code publicly available.
 ## 🧾 Reference
 - Ertl, P. An algorithm to identify functional groups in organic molecules. J Cheminform 9, 36 (2017)
 - Gonzalo C. EFGs:A Complete and Accurate Implementation of Ertl’s Functional Group Detection Algorithm in RDKit. J.Chem. Inf.Model. 65, 1061−1066 (2025)
-- Lihong P. BINDTI: A Bi-Directional Intention Network for Drug-Target Interaction Identification Based on Attention Mechanisms. IEEE JOURNAL OF BIOMEDICAL AND HEALTH INFORMATICS, VOL. 29, NO. 3, MARCH 2025
+- Lv, T. M2N: A Progressive Macro-to-Micro 3D Modeling Scheme for Unveiling Drug-Target Affinity. Proceedings of the AAAI Conference on Artificial Intelligence 39 (1), 586–594 (2025)
+- Peng, L. BINDTI: A Bi-Directional Intention Network for Drug-Target Interaction Identification Based on Attention Mechanisms. IEEE Journal of Biomedical and Health Informatics 29 (3), 1602–1612 (2025)
 
 
