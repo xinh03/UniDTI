@@ -15,20 +15,48 @@ A Multi-modal and Multi-scale Unified Deep Learning Framework for Drug-Target In
    ```bash
    conda activate unidti
    ```
+   
 ## 🏋️ Training
+1. Select task settings
+  ```bash
+  cd src/
+  vim run.sh
+  ```
   ```bash
   # Parameter Settings (please modify according to your local setup)
   DATA_NAME="GLASS"  # options: DAVIS / BindingDB / BIOSNAP / GLASS
-  SPLIT="warm"  # options: warm / cold-drug / cold-prot / etc.
+  SPLIT="warm"  # options: warm / cold_drug / cold_prot / etc.
   
   # Please set the path to your local contact map directory
   CONTACT_MAP_DIR="/path/to/your/contact_maps_p2rank"
   ```
+2. Set the output file path
   ```bash
-  run.sh
+  vim configs.py
+  _C.RESULT.OUTPUT_DIR = "/path/to/your/output"
   ```
-## ⚡ Inference
+4. Start training
+  ```bash
+  bash run.sh
+  ```
 
+
+## ⚡ Inference
+1. set your input file path
+  ```bash
+  cd src/
+  vim prediction.py
+  ```
+  ```python
+  python test2.2.py \
+      --test_data /path/to/your/test_data.csv \
+      --checkpoint /path/to/your/best_model.pth \
+      --result_metrics /path/to/your/result_metrics.pt \
+      --output /path/to/save/predictions.csv \
+      --contact_map_dir /path/to/your/contact_maps_p2rank \
+      --batch_size 64 \
+      --device cuda:0
+  ```
 ## 🔍 Repository Structure
 ```
 UniDTI/
