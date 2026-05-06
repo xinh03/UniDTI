@@ -1,6 +1,6 @@
-# get_p2rank_prediction.sh
+# 3. get_p2rank_prediction.sh
 # Author  : Ethan Huang
-# File    : 3.get_p2rank_prediction.sh
+# File    : get_p2rank_prediction.sh
 # Time    : 2026/3/25
 
 # Single protein pocket prediction
