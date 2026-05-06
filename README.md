@@ -1,17 +1,10 @@
-# UniDTI：A Multi-modal and Multi-scale Unified Deep Learning Framework for Drug-Target Interaction Prediction
+# UniDTI: A Multi-modal and Multi-scale Unified Framework for Predicting Drug-Target Interactions
 
 <p align="center">
 <a href="YOUR_SLACK_OR_COMMUNITY_LINK">
 <img src="https://img.shields.io/badge/Join-Community-4A154B?style=for-the-badge&logo=slack" alt="Join Community" />
 </a>
 
-<a href="YOUR_WEB_UI_LINK">
-<img src="https://img.shields.io/badge/Try-Web%20UI-blue?style=for-the-badge" alt="Web UI" />
-</a>
-
-<a href="YOUR_X_TWITTER_LINK">
-<img src="https://img.shields.io/badge/Follow-on%20X-black?style=for-the-badge&logo=x" alt="Follow on X" />
-</a>
 
 <a href="YOUR_LINKEDIN_LINK">
 <img src="https://img.shields.io/badge/Follow-LinkedIn-0077B5?style=for-the-badge&logo=linkedin" alt="Follow on LinkedIn" />
@@ -25,9 +18,11 @@
 <img src="https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge" alt="MIT License" />
 </a>
 </p>
-## 🏗️ Framework
+
+
+## 🏛️ Framework
 <p align="center">
-  <img src="Figure/Fig1.png" width="800">
+  <img src="Figure/Fig1.png" width="700">
 </p>
 
 ## 🛠️ Installation
@@ -45,7 +40,14 @@ Clone this Github repo and set up a new conda environment. It normally takes abo
    ```bash
    conda activate unidti
    ```
-   
+## 🧮 Data Preparation
+Preparation of Prot-GNN
+  ```bash
+  P2Rank Usage
+  prank predict -f test_data/1fbl.pdb         # predict pockets on single pdb file
+  ```
+For bulk acquisition, please refer to the [p2rank](https://github.com/rdk/p2rank)
+
 ## 🏋️ Training
 1. Select task settings
   ```bash
@@ -108,8 +110,8 @@ We gratefully acknowledge the authors for making their code publicly available.
 - Comprehensive experimental evaluations and ablation studies are presented in the manuscript.
 
 ## 🧾 Reference
-· Ertl, P. An algorithm to identify functional groups in organic molecules. J Cheminform 9, 36 (2017)
-· Gonzalo C. EFGs:A Complete and Accurate Implementation of Ertl’s Functional Group Detection Algorithm in RDKit. J.Chem. Inf.Model. 65, 1061−1066 (2025)
-· Lihong P. BINDTI: A Bi-Directional Intention Network for Drug-Target Interaction Identification Based on Attention Mechanisms. IEEE JOURNAL OF BIOMEDICAL AND HEALTH INFORMATICS, VOL. 29, NO. 3, MARCH 2025
+- Ertl, P. An algorithm to identify functional groups in organic molecules. J Cheminform 9, 36 (2017)
+- Gonzalo C. EFGs:A Complete and Accurate Implementation of Ertl’s Functional Group Detection Algorithm in RDKit. J.Chem. Inf.Model. 65, 1061−1066 (2025)
+- Lihong P. BINDTI: A Bi-Directional Intention Network for Drug-Target Interaction Identification Based on Attention Mechanisms. IEEE JOURNAL OF BIOMEDICAL AND HEALTH INFORMATICS, VOL. 29, NO. 3, MARCH 2025
 
 
