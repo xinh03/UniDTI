@@ -94,13 +94,22 @@ For batch processing, please refer to the official [p2rank](https://github.com/r
   # Please set the path to your local contact map directory
   CONTACT_MAP_DIR="/path/to/your/contact_maps_p2rank"
   ```
-#### 2. Set the output file path
+#### 2. Use the input file
+  ```bash
+  cd datasets/glass/warm
+  unzip test.zip
+  unzip train.zip
+  unzip val.zip
+  ```
+
+#### 3. Set the output file path
   ```bash
   vim configs.py
   # Set your output file path
   _C.RESULT.OUTPUT_DIR = "/path/to/your/output"
   ```
-#### 3. Start training
+
+#### 4. Start training
   ```bash
   bash run.sh
   ```
