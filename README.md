@@ -34,21 +34,45 @@ Clone this Github repo and set up a new conda environment. It normally takes abo
    git clone https://github.com/xinh03/UniDTI.git
    cd UniDTI/
    ```
-2. Create the Conda environment:
+2. Installation Guide
+##### 🔹 Method 1: Automatic Creation
    ```bash
-   conda env create -f environment.yaml
+   conda env create -f environment.yml
+   ```
+##### 🔹 Method 2: Step-by-Step Configuration
+   ```bash
+  # Create and activate the new environment
+  conda create -n unidti python=3.9 -y
+  conda activate unidti
+
+  # Install Torch, torchvision, and torchaudio with CUDA 12.1 support
+  pip install torch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 --index-url https://download.pytorch.org/whl/cu121
+
+  # Install DGL 2.1.0 from the official DGL CUDA 12.1 repository
+  pip install dgl==2.1.0 -f https://data.dgl.ai/wheels/cu121/repo.html
+
+  # Install DGL-LifeSci for chemoinformatics models
+  pip install dgllife==0.3.2
+
+  # Install required helper libraries
+  pip install torchdata==0.7.1 pydantic
+
+  # Install RDKit and core scientific libraries
+  conda install -c conda-forge rdkit numpy=1.26.3 pandas=1.5.3 scikit-learn=1.4.2 \
+  scipy=1.10.1 tqdm prettytable yacs einops networkx=3.2.1 dill packaging \
+  matplotlib-base seaborn -y
    ```
 3. Activate the environment:
    ```bash
    conda activate unidti
    ```
 ## 🧮 Data Preparation
-### 🔹 A) Use the processed Prot-GNN data
+##### 🔹 A) Use the processed Prot-GNN data
   ```bash
   cd prot-gnn-data/contact_maps_p2rank
   unzip contact_maps_p2rank.zip
   ```
-### 🔹 B) Preparation for Prot-GNN
+##### 🔹 B) Preparation for Prot-GNN
   ```bash
   cd prot-gnn-data/
   ```
