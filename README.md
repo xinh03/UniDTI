@@ -38,7 +38,7 @@ Clone this Github repo and set up a new conda environment. It normally takes abo
 ##### 🔹 Method 1: Automatic Creation
   ```bash
   conda env create -f environment.yml
-  conda activate unidti2
+  conda activate unidti
   pip install torch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 --index-url https://download.pytorch.org/whl/cu121
   pip install dgl==2.1.0 -f https://data.dgl.ai/wheels/cu121/repo.html
   ```
