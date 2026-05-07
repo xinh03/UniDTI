@@ -147,10 +147,13 @@ def main():
     trainer = Trainer(model, opt, device, training_generator, val_generator, test_generator, 
                      args.data, args.split, **cfg)
     result = trainer.train()
-
-    with open(os.path.join(cfg.RESULT.OUTPUT_DIR, f"{args.data}/{args.split}/model_architecture.txt"), "w") as wf:
+    ##
+    save_dir = trainer.output_dir
+    os.makedirs(save_dir, exist_ok=True)   
+    
+    with open(os.path.join(save_dir, "model_architecture.txt"), "w") as wf:
         wf.write(str(model))
-    with open(os.path.join(cfg.RESULT.OUTPUT_DIR, f"{args.data}/{args.split}/config.txt"), "w") as wf:
+    with open(os.path.join(save_dir, "config.txt"), "w") as wf:
         wf.write(str(dict(cfg)))
 
     print(f"\nDirectory for saving result: {cfg.RESULT.OUTPUT_DIR}{args.data}")
