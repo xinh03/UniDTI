@@ -168,7 +168,7 @@ UniDTI/
 ├── prot-gnn-data/ # Protein graph data for GNN-based modeling
 ├── src/ # Source code for feature extraction, training and inference 
 ├── README.md # Project documentation
-└── environment.yaml # Conda environment configuration of UniDTI
+└── environment.yml # Conda environment configuration of UniDTI
 ```
 Note: Our code is mainly referenced from [EFGs](https://github.com/rdkit/rdkit/tree/master/Contrib/efgs), M<sup>2</sup>N and [BINDTI](https://github.com/plhhnu/BINDTI).
 We gratefully acknowledge the authors for making their code publicly available.  
