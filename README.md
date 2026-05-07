@@ -28,7 +28,7 @@
 </p>
 
 ## 🛠️ Installation
-Clone this Github repo and set up a new conda environment. It normally takes about 10 minutes to install on a normal desktop computer.
+Clone this Github repo and set up a new conda environment. It normally takes about 20 minutes to install on a normal desktop computer.
 1. Clone the source code of UniDTI
    ```bash
    git clone https://github.com/xinh03/UniDTI.git
