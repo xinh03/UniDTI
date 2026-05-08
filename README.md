@@ -66,9 +66,9 @@ Clone this Github repo and set up a new conda environment. It normally takes abo
   matplotlib-base seaborn -y
   ```
 3. Activate the environment:
-   ```bash
-   conda activate unidti
-   ```
+  ```bash
+  conda activate unidti
+  ```
 ## 🧮 Data Preparation
 ##### 🔹 A) Use the processed Prot-GNN data
   ```bash
