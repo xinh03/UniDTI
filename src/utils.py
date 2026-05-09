@@ -13,7 +13,6 @@ CHARPROTSET = {
 
 CHARPROTLEN = 25
 
-# 药物序列词汇表（与dataloader.py中一致）
 SMILES_CHARS = list("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#()[]=+-*/\\.")
 SMILES_TO_IDX = {c: i+1 for i, c in enumerate(SMILES_CHARS)}
 UNKNOWN_SMILES_IDX = len(SMILES_TO_IDX) + 1
