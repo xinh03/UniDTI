@@ -3,24 +3,23 @@
 </h1>
 
 <p align="center">
-<a href="YOUR_SLACK_OR_COMMUNITY_LINK">
-<img src="https://img.shields.io/badge/Join-Community-4A154B?style=for-the-badge&logo=slack" alt="Join Community" />
-</a>
 
-
-<a href="YOUR_LINKEDIN_LINK">
+<a href="LINKEDIN_LINK">
 <img src="https://img.shields.io/badge/Follow-LinkedIn-0077B5?style=for-the-badge&logo=linkedin" alt="Follow on LinkedIn" />
 </a>
 
-<a href="YOUR_PAPER_LINK">
+<a href="PAPER_LINK">
 <img src="https://img.shields.io/badge/Read-Paper-green?style=for-the-badge" alt="Paper" />
 </a>
 
 <a href="LICENSE">
 <img src="https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge" alt="MIT License" />
 </a>
-</p>
 
+<a href="https://github.com/xinh03/UniDTI/stargazers">
+<img src="https://img.shields.io/github/stars/USERNAME/REPO?style=for-the-badge" alt="GitHub stars" />
+</a>
+</p>
 
 ## 🏛️ Framework
 <p align="center">
