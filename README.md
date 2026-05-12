@@ -16,9 +16,12 @@
 <img src="https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge" alt="MIT License" />
 </a>
 
-<a href="https://github.com/xinh03/UniDTI/tree/main/stargazers">
-<img src="https://img.shields.io/github/stars/USERNAME/REPO?style=for-the-badge" alt="GitHub stars" />
+
+<a href="https://github.com/xinh03/UniDTI/stargazers">
+<img src="https://img.shields.io/github/stars/xinh03/UniDTI?style=for-the-badge" alt="GitHub stars" />
 </a>
+
+
 </p>
 
 ## 🏛️ Framework
