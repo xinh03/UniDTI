@@ -3,30 +3,26 @@
 </h1>
 
 <p align="center">
-
 <a href="LINKEDIN_LINK">
 <img src="https://img.shields.io/badge/Follow-LinkedIn-0077B5?style=for-the-badge&logo=linkedin" alt="Follow on LinkedIn" />
 </a>
 
 <a href="PAPER_LINK">
-<img src="https://img.shields.io/badge/Read-Paper-green?style=for-the-badge" alt="Paper" />
+<img src="https://img.shields.io/badge/Read-Paper-brightgreen?style=for-the-badge" alt="Paper" />
 </a>
 
 <a href="LICENSE">
-<img src="https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge" alt="MIT License" />
+<img src="https://img.shields.io/badge/License-MIT-blueviolet?style=for-the-badge" alt="MIT License" />
 </a>
-
 
 <a href="https://github.com/xinh03/UniDTI/stargazers">
-<img src="https://img.shields.io/github/stars/xinh03/UniDTI?style=for-the-badge" alt="GitHub stars" />
+<img src="https://img.shields.io/github/stars/xinh03/UniDTI?style=for-the-badge&color=yellow" alt="GitHub stars" />
 </a>
-
-
 </p>
 
 ## 🏛️ Framework
 <p align="center">
-  <img src="Figure/Fig1.png" width="750">
+  <img src="Figure/Fig1.png" width="800">
 </p>
 
 ## 🛠️ Installation
