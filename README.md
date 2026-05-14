@@ -20,6 +20,11 @@
 </a>
 </p>
 
+##  🧠 Abstract
+<p style="text-align: justify;">
+   <strong>Abstract:</strong> Accurate identification of drug-target interactions (DTIs) is central to modern drug discovery, yet remains challenging due to the intrinsically multi-scale and heterogeneous nature of molecular recognition. Existing computational approaches typically rely on single-modal or single-scale representations and employ simplistic fusion strategies, limiting their ability to capture the complex, non-linear interplay between ligands and protein binding sites. Here, we present UniDTI, a unified deep learning framework that integrates multi-modal and multi-scale representations of both drugs and proteins within an intent-aware interaction paradigm. Drug molecules are encoded through complementary modalities, including sequence representations (SMILES and IUPAC), hierarchical graph structures (atom-level and substructure-level), and global physicochemical descriptors. Proteins are represented using structure-aware pocket graphs derived from AlphaFold2 models together with sequence-level motif embeddings. To bridge these heterogeneous representations, we introduce a Bidirectional Intention Network (BIN) that models directional and asymmetric interactions between ligand substructures and protein residues, enabling dynamic alignment across modalities and spatial scales beyond conventional attention-based fusion. Across multiple benchmark datasets, including BindingDB, BioSNAP, Davis, DRH, and the GPCR-focused GLASS dataset, UniDTI consistently outperforms state-of-the-art methods in terms of AUROC, AUPRC, and other evaluation metrics, while demonstrating strong generalization ability under cold-start (unseen drug/target) and data-scarce settings. Importantly, to demonstrate its practical utility, we applied UniDTI in a virtual screening against the μ-opioid receptor leading to the experimental identification of two novel active compounds. Overall, UniDTI provides a generalizable and experimentally validated framework for integrating heterogeneous biochemical information, offering a promising direction for next-generation AI-driven drug discovery.
+</p>
+
 ## 🏛️ Framework
 <p align="center">
   <img src="Figure/Fig1.png" width="800">
