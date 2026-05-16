@@ -1,7 +1,7 @@
 <h1 align="center">
   UniDTI: A Multi-modal and Multi-scale Unified Framework for Predicting Drug-Target Interactions
 </h1>
-
+  
 <p align="center">
 <a href="LINKEDIN_LINK">
 <img src="https://img.shields.io/badge/Follow-LinkedIn-0077B5?style=for-the-badge&logo=linkedin" alt="Follow on LinkedIn" />
