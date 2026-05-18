@@ -36,7 +36,7 @@ UniDTI provides an end-to-end pipeline for drug-target interaction prediction, i
 
 - Multi-modal drug representation learning
 - Structure-aware protein pocket graph construction
-- Multi-scale interaction modeling with BIN
+- Dynamic bidirectional interaction modeling for drug-target pairs
 - Training and inference under warm/cold-start settings
 - Virtual screening support for large-scale candidate evaluation
 
