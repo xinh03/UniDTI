@@ -30,6 +30,16 @@
   <img src="Figure/Fig1.png" width="800">
 </p>
 
+## 🚀 Get Started
+
+UniDTI provides an end-to-end pipeline for drug-target interaction prediction, including:
+
+- Multi-modal drug representation learning
+- Structure-aware protein pocket graph construction
+- Multi-scale interaction modeling with BIN
+- Training and inference under warm/cold-start settings
+- Virtual screening support for large-scale candidate evaluation
+
 ## 🛠️ Installation
 Clone this Github repo and set up a new conda environment. It normally takes about 20 minutes to install on a normal desktop computer.
 1. Clone the source code of UniDTI
